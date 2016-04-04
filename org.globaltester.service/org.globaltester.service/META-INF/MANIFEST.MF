@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: GT Service API
+Bundle-SymbolicName: org.globaltester.service
+Bundle-Version: 0.0.1.qualifier
+Bundle-Activator: org.globaltester.service.Activator
+Bundle-Vendor: HJP Consulting GmbH
+Require-Bundle: org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
