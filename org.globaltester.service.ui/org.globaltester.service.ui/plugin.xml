@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="GlobalTester"
+            id="org.globaltester">
+      </category>
+      <view
+            name="GT Service Dashboard"
+            icon="icons/sample.gif"
+            category="org.globaltester"
+            class="org.globaltester.service.ui.views.ServiceDashboardView"
+            id="org.globaltester.service.ui.views.ServiceDashboardView">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.globaltester.base.ui.perspective.GlobalTesterPerspective">
+         <view
+               id="org.globaltester.service.ui.views.ServiceDashboardView"
+               relationship="stack"
+               relative="org.eclipse.ui.views.ProgressView">
+         </view>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+
+</plugin>
