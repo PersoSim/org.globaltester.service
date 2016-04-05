@@ -39,7 +39,7 @@ public class ServiceDashboardView extends ViewPart {
 	 */
 	public void createPartControl(Composite parent) {
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
-		viewer.setContentProvider(new ServiceDashboardContentProvider());
+		viewer.setContentProvider(new ServiceDashboardContentProvider(viewer));
 		viewer.setLabelProvider(new ServiceDashboardLabelProvider());
 		viewer.setSorter(new ViewerSorter());
 		viewer.setInput(getViewSite());
@@ -103,7 +103,8 @@ public class ServiceDashboardView extends ViewPart {
 		
 		action2 = new Action() {
 			public void run() {
-				showMessage("Action 2 executed");
+//				showMessage("Action 2 executed");
+				viewer.refresh();
 			}
 		};
 		action2.setText("Action 2");

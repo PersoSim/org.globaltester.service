@@ -8,21 +8,21 @@ public class Activator implements BundleActivator {
 
 	private static Activator defaultInstance;
 	private static BundleContext context;
-	private static ServiceTracker<GtService, GtService> factoryTracker;
+	private static ServiceTracker<GtService, GtService> gtServiceTracker;
 
 	@Override
 	public void start(BundleContext bundleContext) throws Exception {
 		context = bundleContext;
 		defaultInstance = this;
-		factoryTracker = new ServiceTracker<>(context, GtService.class, null);
-		factoryTracker.open();
+		gtServiceTracker = new ServiceTracker<>(context, GtService.class, null);
+		gtServiceTracker.open();
 	}
 
 	@Override
 	public void stop(BundleContext bundleContext) throws Exception {
-		if (factoryTracker != null) {
-			factoryTracker.close();
-			factoryTracker = null;
+		if (gtServiceTracker != null) {
+			gtServiceTracker.close();
+			gtServiceTracker = null;
 		}
 		defaultInstance = null;
 		context = null;
@@ -40,11 +40,11 @@ public class Activator implements BundleActivator {
 	 */
 	public static GtService[] getAvailableGtServices() {
 		GtService[] emptyArray = new GtService[0];
-		if (factoryTracker == null) {
+		if (gtServiceTracker == null) {
 			return emptyArray;
 		}
 
-		return factoryTracker.getServices(emptyArray);
+		return gtServiceTracker.getServices(emptyArray);
 	}
 
 	public static Activator getDefault() {
