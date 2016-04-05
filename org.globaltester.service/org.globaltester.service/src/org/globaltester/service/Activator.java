@@ -2,29 +2,53 @@ package org.globaltester.service;
 
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.util.tracker.ServiceTracker;
 
 public class Activator implements BundleActivator {
 
+	private static Activator defaultInstance;
 	private static BundleContext context;
+	private static ServiceTracker<GtService, GtService> factoryTracker;
 
-	static BundleContext getContext() {
+	@Override
+	public void start(BundleContext bundleContext) throws Exception {
+		context = bundleContext;
+		defaultInstance = this;
+		factoryTracker = new ServiceTracker<>(context, GtService.class, null);
+		factoryTracker.open();
+	}
+
+	@Override
+	public void stop(BundleContext bundleContext) throws Exception {
+		if (factoryTracker != null) {
+			factoryTracker.close();
+			factoryTracker = null;
+		}
+		defaultInstance = null;
+		context = null;
+	}
+
+	public static BundleContext getContext() {
 		return context;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
+	/**
+	 * Returns a {@link Collection} of available {@link ProtocolFactory}
+	 * objects. One for each registered OSGi service.
+	 * 
+	 * @return
 	 */
-	public void start(BundleContext bundleContext) throws Exception {
-		Activator.context = bundleContext;
+	public static GtService[] getAvailableGtServices() {
+		GtService[] emptyArray = new GtService[0];
+		if (factoryTracker == null) {
+			return emptyArray;
+		}
+
+		return factoryTracker.getServices(emptyArray);
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
-	 */
-	public void stop(BundleContext bundleContext) throws Exception {
-		Activator.context = null;
+	public static Activator getDefault() {
+		return defaultInstance;
 	}
 
 }

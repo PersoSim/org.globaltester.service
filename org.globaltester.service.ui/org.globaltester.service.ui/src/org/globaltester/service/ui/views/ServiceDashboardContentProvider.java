@@ -22,6 +22,6 @@ class ServiceDashboardContentProvider implements IStructuredContentProvider {
 
 	@Override
 	public Object[] getElements(Object parent) {
-		return new String[] { "One", "Two", "Three" };
+		return org.globaltester.service.Activator.getAvailableGtServices();
 	}
 }
