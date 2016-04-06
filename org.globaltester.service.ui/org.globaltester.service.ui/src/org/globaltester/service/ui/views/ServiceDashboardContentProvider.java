@@ -29,7 +29,9 @@ class ServiceDashboardContentProvider implements IStructuredContentProvider {
 
 					@Override
 					public void run() {
-						viewer.refresh();
+						if (!viewer.getControl().isDisposed()) {
+							viewer.refresh();
+						}
 					}
 					
 				});

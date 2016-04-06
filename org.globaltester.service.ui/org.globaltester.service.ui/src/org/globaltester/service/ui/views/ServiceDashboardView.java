@@ -1,14 +1,32 @@
 package org.globaltester.service.ui.views;
 
 
-import org.eclipse.swt.widgets.Composite;
-import org.eclipse.ui.part.*;
-import org.eclipse.jface.viewers.*;
-import org.eclipse.jface.action.*;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IMenuListener;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.ui.*;
-import org.eclipse.swt.widgets.Menu;
+import org.eclipse.jface.viewers.ColumnPixelData;
+import org.eclipse.jface.viewers.ColumnWeightData;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.TableLayout;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.ui.IActionBars;
+import org.eclipse.ui.ISharedImages;
+import org.eclipse.ui.IWorkbenchActionConstants;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.part.ViewPart;
+import org.globaltester.service.GtService;
 
 
 /**
@@ -43,6 +61,8 @@ public class ServiceDashboardView extends ViewPart {
 		viewer.setLabelProvider(new ServiceDashboardLabelProvider());
 		viewer.setSorter(new ViewerSorter());
 		viewer.setInput(getViewSite());
+		
+		createColumns();
 
 		// Create the help context id for the viewer's control
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(), "org.globaltester.service.ui.viewer");
@@ -51,6 +71,28 @@ public class ServiceDashboardView extends ViewPart {
 		hookContextMenu();
 		hookDoubleClickAction();
 		contributeToActionBars();
+	}
+	
+	/**
+	 * Create the columns used in the table viewer.
+	 */
+	private void createColumns() {
+		TableLayout layout = new TableLayout();
+		viewer.getTable().setLayout(layout);
+		viewer.getTable().setHeaderVisible(true);
+		viewer.getTable().setLinesVisible(true);
+
+		int colNr = 0;
+		TableColumn tcName = new TableColumn(viewer.getTable(), SWT.NONE, colNr++);
+		tcName.setText("Gt Service");
+		layout.addColumnData(new ColumnWeightData(800));
+		
+		
+		TableColumn tcStatus = new TableColumn(viewer.getTable(), SWT.NONE, colNr++);
+		tcStatus.setText("Status");
+		layout.addColumnData(new ColumnPixelData(100));
+		
+		
 	}
 
 	private void hookContextMenu() {

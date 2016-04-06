@@ -8,6 +8,18 @@ package org.globaltester.service;
  *
  */
 public interface GtService {
+
+	/**
+	 * User readable name of the Service
+	 * @return
+	 */
+	String getName();
+
+	/**
+	 * 
+	 * @return whether the service is currently running or not
+	 */
+	boolean isRunning();
 	
 
 }
