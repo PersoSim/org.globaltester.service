@@ -11,6 +11,7 @@ public interface GtService {
 
 	/**
 	 * User readable name of the Service
+	 * 
 	 * @return
 	 */
 	String getName();
@@ -20,6 +21,21 @@ public interface GtService {
 	 * @return whether the service is currently running or not
 	 */
 	boolean isRunning();
-	
+
+	/**
+	 * Register a new {@link GtServiceListener} that is notified about relevant
+	 * changes of this instance
+	 * 
+	 * @param listener
+	 */
+	void registerServiceListener(GtServiceListener listener);
+
+	/**
+	 * Unregister the given {@link GtServiceListener}.
+	 * <p/>
+	 * If the listener was not known nothing happens.
+	 * @param listener
+	 */
+	void unregisterServiceListener(GtServiceListener listener);
 
 }
