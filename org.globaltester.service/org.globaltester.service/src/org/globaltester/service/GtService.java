@@ -34,8 +34,20 @@ public interface GtService {
 	 * Unregister the given {@link GtServiceListener}.
 	 * <p/>
 	 * If the listener was not known nothing happens.
+	 * 
 	 * @param listener
 	 */
 	void unregisterServiceListener(GtServiceListener listener);
+
+	/**
+	 * Start the implemented service (i.e. make publicly available)
+	 */
+	void start();
+
+	/**
+	 * Stops the implemented service (i.e. it is no longer accessible after the
+	 * call returns)
+	 */
+	void stop();
 
 }

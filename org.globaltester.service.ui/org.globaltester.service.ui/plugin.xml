@@ -33,5 +33,78 @@
             file="contexts.xml">
       </contexts>
    </extension>
+   <extension
+         id="org.globaltester.service.ui.commands"
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.globaltester.service.ui.commands.StartStopServiceHandler"
+            id="org.globaltester.service.ui.startStopService"
+            name="Start/Stop Service">
+         <commandParameter
+               id="org.globaltester.service.ui.parameter.startOrStop"
+               name="startOrStop"
+               optional="false">
+         </commandParameter>
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="popup:org.globaltester.service.ui.views.ServiceDashboardView">
+         <command
+               commandId="org.globaltester.service.ui.startStopService"
+               label="Start Service"
+               style="push">
+            <parameter
+                  name="org.globaltester.service.ui.parameter.startOrStop"
+                  value="start">
+            </parameter>
+         </command>
+         <command
+               commandId="org.globaltester.service.ui.startStopService"
+               label="Stop Service"
+               style="push">
+            <parameter
+                  name="org.globaltester.service.ui.parameter.startOrStop"
+                  value="stop">
+            </parameter>
+         </command>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.globaltester.service.ui.views.ServiceDashboardView">
+         <command
+               commandId="org.globaltester.service.ui.startStopService"
+               label="Start"
+               style="push">
+            <parameter
+                  name="org.globaltester.service.ui.parameter.startOrStop"
+                  value="start">
+            </parameter>
+         </command>
+         <command
+               commandId="org.globaltester.service.ui.startStopService"
+               label="Stop"
+               style="push">
+            <parameter
+                  name="org.globaltester.service.ui.parameter.startOrStop"
+                  value="stop">
+            </parameter>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.activities">
+      <activity
+            description="used to suppress team menu (which is empty on our selection but appears once and is removed later for some reason). This activity suppresses it completely"
+            id="org.globaltester.service.ui.activity"
+            name="dont&apos; display">
+      </activity>
+      <activityPatternBinding
+            activityId="org.globaltester.service.ui.activity"
+            pattern="team.main">
+      </activityPatternBinding>
+   </extension>
 
 </plugin>
