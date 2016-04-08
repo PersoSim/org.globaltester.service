@@ -5,10 +5,14 @@ import java.util.Iterator;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.PlatformUI;
 import org.globaltester.service.GtService;
+import org.globaltester.service.ui.Activator;
 
 public class StartStopServiceHandler extends AbstractHandler {
 
@@ -28,6 +32,7 @@ public class StartStopServiceHandler extends AbstractHandler {
 		}
 		
 		//handle every selected GtService
+		try {
 		Iterator<?> selectionIter = ((IStructuredSelection) iSel).iterator();
 					while (selectionIter.hasNext()) {
 						Object curElem = (Object) selectionIter.next();
@@ -43,6 +48,9 @@ public class StartStopServiceHandler extends AbstractHandler {
 							}
 						}
 					}
+		} catch (RuntimeException e) {
+			ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error", null, new Status(IStatus.ERROR, Activator.PLUGIN_ID, 1, e.getMessage(), e ));
+		}
 		
 		return null;
 	}
