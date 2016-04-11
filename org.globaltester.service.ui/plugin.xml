@@ -10,7 +10,7 @@
       </category>
       <view
             name="GT Service Dashboard"
-            icon="icons/sample.gif"
+            icon="icons/gears_15_15.png"
             category="org.globaltester"
             class="org.globaltester.service.ui.views.ServiceDashboardView"
             id="org.globaltester.service.ui.views.ServiceDashboardView">
