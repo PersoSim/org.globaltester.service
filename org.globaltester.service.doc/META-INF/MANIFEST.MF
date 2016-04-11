@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Gt Service Doc
+Bundle-SymbolicName: org.globaltester.service.doc;singleton:=true
+Bundle-Version: 0.0.1.qualifier
+Bundle-Vendor: HJP Consulting GmbH
+Require-Bundle: org.eclipse.help
