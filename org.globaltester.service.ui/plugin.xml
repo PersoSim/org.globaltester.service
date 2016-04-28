@@ -4,14 +4,10 @@
 
    <extension
          point="org.eclipse.ui.views">
-      <category
-            name="GlobalTester"
-            id="org.globaltester">
-      </category>
       <view
             name="GT Service Dashboard"
             icon="icons/gears_15_15.png"
-            category="org.globaltester"
+            category="org.globaltester.base.ui.views.category"
             class="org.globaltester.service.ui.views.ServiceDashboardView"
             id="org.globaltester.service.ui.views.ServiceDashboardView">
       </view>
