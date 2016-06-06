@@ -6,7 +6,7 @@ import org.eclipse.jface.viewers.ColumnPixelData;
 import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.TableLayout;
 import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.jface.viewers.ViewerSorter;
+import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Menu;
@@ -43,7 +43,7 @@ public class ServiceDashboardView extends ViewPart {
 		viewer = new TableViewer(parent, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL);
 		viewer.setContentProvider(new ServiceDashboardContentProvider(viewer));
 		viewer.setLabelProvider(new ServiceDashboardLabelProvider());
-		viewer.setSorter(new ViewerSorter());
+		viewer.setComparator(new ViewerComparator());
 		viewer.setInput(getViewSite());
 		
 		createColumns();
