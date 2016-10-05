@@ -3,5 +3,5 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Gt Service Doc
 Bundle-SymbolicName: org.globaltester.service.doc;singleton:=true
 Bundle-Version: 0.1.0.qualifier
-Bundle-Vendor: HJP Consulting GmbH
+Bundle-Vendor: secunet Security Networks AG
 Require-Bundle: org.eclipse.help
