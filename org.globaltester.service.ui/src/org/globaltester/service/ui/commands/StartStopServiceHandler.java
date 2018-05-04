@@ -18,40 +18,33 @@ public class StartStopServiceHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		
-		String startOrStop = event
-		        .getParameter("org.globaltester.service.ui.parameter.startOrStop");
-		
-		
-		ISelection iSel = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-				.getSelectionService().getSelection();
-		
+
+		String startOrStop = event.getParameter("org.globaltester.service.ui.parameter.startOrStop");
+
+		ISelection iSel = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().getSelection();
+
 		// check type of selection
-		if (!(iSel instanceof IStructuredSelection)) {
-			return null;
-		}
-		
-		//handle every selected GtService
-		try {
-		Iterator<?> selectionIter = ((IStructuredSelection) iSel).iterator();
-					while (selectionIter.hasNext()) {
-						Object curElem = (Object) selectionIter.next();
-						if (curElem instanceof GtService) {
-							switch (startOrStop) {
-								case "start":
-									((GtService) curElem).start();
-									break;
-								case "stop":
-									((GtService) curElem).stop();
-									break;
-							
-							}
+		if (iSel instanceof IStructuredSelection) {
+
+			// handle every selected GtService
+			try {
+				Iterator<?> selectionIter = ((IStructuredSelection) iSel).iterator();
+				while (selectionIter.hasNext()) {
+					Object curElem = selectionIter.next();
+					if (curElem instanceof GtService) {
+						if ("start".equals(startOrStop)) {
+							((GtService) curElem).start();
+						} else if ("stop".equals(startOrStop)) {
+							((GtService) curElem).stop();
 						}
 					}
-		} catch (RuntimeException e) {
-			ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error", null, new Status(IStatus.ERROR, Activator.PLUGIN_ID, 1, e.getMessage(), e ));
+				}
+			} catch (RuntimeException e) {
+				ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error", null,
+						new Status(IStatus.ERROR, Activator.PLUGIN_ID, 1, e.getMessage(), e));
+			}
 		}
-		
+
 		return null;
 	}
 
