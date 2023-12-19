@@ -10,3 +10,4 @@ Require-Bundle: org.eclipse.ui,
  org.globaltester.service
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: org.globaltester.service.ui
