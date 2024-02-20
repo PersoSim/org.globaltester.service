@@ -6,7 +6,7 @@ Bundle-Version: 3.9.0.qualifier
 Bundle-Activator: org.globaltester.service.Activator
 Bundle-Vendor: secunet Security Networks AG
 Require-Bundle: org.eclipse.core.runtime
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
 Export-Package: org.globaltester.service
 Automatic-Module-Name: org.globaltester.service
