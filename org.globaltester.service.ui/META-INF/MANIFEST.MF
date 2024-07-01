@@ -2,11 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: GT Service UI
 Bundle-SymbolicName: org.globaltester.service.ui;singleton:=true
-Bundle-Version: 3.9.0.qualifier
+Bundle-Version: 3.10.0.qualifier
 Bundle-Activator: org.globaltester.service.ui.Activator
 Bundle-Vendor: secunet Security Networks AG
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.globaltester.service
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-17
 Bundle-ActivationPolicy: lazy
+Automatic-Module-Name: org.globaltester.service.ui
